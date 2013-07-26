@@ -17,10 +17,12 @@ class testApp : public ofBaseApp{
   void windowResized(int w, int h);
   void dragEvent(ofDragInfo dragInfo);
   void gotMessage(ofMessage msg);
-  
+  void setUniforms();
+
  private:
   ofShader shader;
   ofFbo fbo;
   float width, height;
-  ofVec2f mouse;
+  int bVert, bHorizon, bDiag, bArms, bRings, bSpiral;
+  float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed;
 };

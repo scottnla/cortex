@@ -1,13 +1,9 @@
 uniform float time;
 uniform vec2 resolution;
+uniform bool bVert, bHorizon, bDiag, bArms, bRings, bSpiral;
+uniform float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed;
 
 void main( void ) {
-    bool bVert, bHorizon, bDiag, bArms, bRings, bSpiral = false;
-    bSpiral = true;
-    bVert = true;
-
-    float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed = 1.0;
-
     vec2 position = (gl_FragCoord.xy/resolution.xy);
 
     float cX = position.x - 0.5;
@@ -37,7 +33,7 @@ void main( void ) {
     }
     //Diagonal Bands
     if(bDiag) {
-    color += cos(2.0*numDiagBands*(cX*sin(spiralAngle) + cY*cos(spiralAngle)) + diagSpeed*time);	
+    color += cos(2.0*numDiagBands*(cX*sin(spiralAngle) + cY*cos(spiralAngle)) + diagSpeed*time);
     }
     //Arms
     if(bArms) {
@@ -52,7 +48,7 @@ void main( void ) {
     color += cos(2.0*numArms*(newX*sin(spiralAngle) + newY*cos(spiralAngle)) + spiralSpeed*time);
     }
     //overall brightness/color
-    color *= cos(time/10.0);
+    //color *= cos(time/10.0);
     gl_FragColor = vec4( vec3( sin( color + time / 3.0 ) * 0.75, color, sin( color + time / 3.0 ) * 0.75 ), 1.0 );
     
 }
