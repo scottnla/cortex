@@ -10,7 +10,7 @@ void main( void ) {
      float cY = position.y - 0.5;
 
      float newX = log(sqrt(cX*cX + cY*cY));
-     float newY = atan(cY, cX);
+     float newY = atan(cX, cY);
      
      float color = 0.0;
      color += sin( newX * cos( time / 15.0 ) * 80.0 ) + cos( newX * cos( time / 15.0 ) * 10.0 );
