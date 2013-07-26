@@ -30,8 +30,6 @@ void testApp::draw(){
   ofSetHexColor(0xffffff);
   ofDrawBitmapString(ofToString(ofGetFrameRate(), 4), 10, 10);
 
-  ofSaveViewport("test");
-
 }
 
 //--------------------------------------------------------------
