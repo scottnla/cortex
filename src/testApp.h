@@ -25,4 +25,6 @@ class testApp : public ofBaseApp{
   float width, height;
   int bVert, bHorizon, bDiag, bArms, bRings, bSpiral;
   float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed;
+  float numVert, numHorizon, numDiag, numRings;
+  int numArms, numSpiral;
 };

@@ -1,0 +1,24 @@
+Title: Cortex
+Author: Nathan S Lachenmyer
+Date Started: July 2013
+Last Modified: July 2013
+
+=CORTEX=
+Cortex creates graphics based off of Kuver's form constants.  The original paper documenting the mathematics can be found at the following URL:
+
+www.math.utah.edu/~bresslof/publications/01-1.pdf
+
+=COMMANDS=
+
+Patterns can be activated and deactivated using the numeric keys:
+
+1 - Vertical Bands
+2 - Horizontal Bands
+3 - Diagonal Bands
+4 - Arms
+5 - Rings
+6 - Spirals
+
+the subsequent row of letters (q,w,e,r,t,y) increase the speed of each pattern; the corresponding capital letters (Q,W,E,R,T,Y) decrease the speed by the same amount.
+
+The next row of letters (a,s,d,f,g,h) increases the frequency of the input sinusoid, changing the numbers of bands / rings / arms that appear in the pattern.  The respective capital letter decreases the parameter.
