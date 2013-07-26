@@ -8,6 +8,8 @@ Cortex creates graphics based off of Kuver's form constants.  The original paper
 
 www.math.utah.edu/~bresslof/publications/01-1.pdf
 
+This program has been tested on Ubuntu 12.04 and OSX 10.8
+
 =COMMANDS=
 
 Patterns can be activated and deactivated using the numeric keys:
