@@ -4,7 +4,7 @@
 void testApp::setup(){
   width = ofGetWidth();
   height = ofGetHeight();
-  shader.load("forms");
+  shader.load("retina");
   fbo.allocate(width,height);
 }
 
@@ -34,7 +34,6 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
 }
 
 //--------------------------------------------------------------
