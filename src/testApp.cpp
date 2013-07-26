@@ -4,7 +4,7 @@
 void testApp::setup(){
   width = ofGetWidth();
   height = ofGetHeight();
-  shader.load("retina");
+  shader.load("cortex");
   fbo.allocate(width,height);
   //set default values
   bVert = bHorizon = bDiag = bArms = bRings = bSpiral = 0;
