@@ -49,10 +49,6 @@ void testApp::draw(){
   fbo.end();
 
   fbo.draw(0,0,width,height);
-  
-  ofSetHexColor(0xffffff);
-  ofDrawBitmapString(ofToString(ofGetFrameRate(), 4), 10, 10);
-
 }
 
 //--------------------------------------------------------------
