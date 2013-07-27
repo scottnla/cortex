@@ -24,3 +24,5 @@ Patterns can be activated and deactivated using the numeric keys:
 the subsequent row of letters (q,w,e,r,t,y) increase the speed of each pattern; the corresponding capital letters (Q,W,E,R,T,Y) decrease the speed by the same amount.
 
 The next row of letters (a,s,d,f,g,h) increases the frequency of the input sinusoid, changing the numbers of bands / rings / arms that appear in the pattern.  The respective capital letter decreases the parameter.
+
+The last row of letters (z,x,c,v,b,n) swaps the direction of the pattern.

@@ -3,6 +3,7 @@ uniform vec2 resolution;
 uniform bool bVert, bHorizon, bDiag, bArms, bRings, bSpiral;
 uniform float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed;
 uniform float numVert, numHorizon, numDiag, numRings, numArms, numSpiral;
+uniform float vertSign, horizonSign, diagSign, armSign, ringSign, spiralSign;
 
 void main( void ) {
     vec2 position = (gl_FragCoord.xy/resolution.xy);
@@ -20,27 +21,27 @@ void main( void ) {
     
     //Vertical Bands
     if(bVert) {
-    color += cos(numVert*cY + vertSpeed*time);
+    color += cos(numVert*cY + vertSign*vertSpeed*time);
     }   
     //Horizontal Bands
     if(bHorizon) {
-    color += cos(numHorizon*cX + horizonSpeed*time);	
+    color += cos(numHorizon*cX + horizonSign*horizonSpeed*time);	
     }
     //Diagonal Bands
     if(bDiag) {
-    color += cos(2.0*numDiag*(cX*sin(spiralAngle) + cY*cos(spiralAngle)) + diagSpeed*time);
+    color += cos(2.0*numDiag*(cX*sin(spiralAngle) + cY*cos(spiralAngle)) + diagSign*diagSpeed*time);
     }
     //Arms
     if(bArms) {
-    color += cos(numArms*newY + armSpeed*time);
+    color += cos(numArms*newY + armSign*armSpeed*time);
     }
     //Rings
     if(bRings) {
-    color += cos(numRings*newX + ringSpeed*time);
+    color += cos(numRings*newX + ringSign*ringSpeed*time);
     }
     //Spirals
     if(bSpiral) {
-    color += cos(2.0*numSpiral*(newX*sin(spiralAngle) + newY*cos(spiralAngle)) + spiralSpeed*time);
+    color += cos(2.0*numSpiral*(newX*sin(spiralAngle) + newY*cos(spiralAngle)) + spiralSign*spiralSpeed*time);
     }
     //overall brightness/color
     //color *= cos(time/10.0);

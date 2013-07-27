@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+  ofEnableSmoothing();
+  ofSetFrameRate(60);
   width = ofGetWidth();
   height = ofGetHeight();
   shader.load("cortex");
@@ -19,12 +21,18 @@ void testApp::setup(){
   armSpeed = 4.0;
   ringSpeed = 4.0;
   spiralSpeed = 4.0;
-  numVert = 6.0;
-  numHorizon = 6.0;
-  numDiag = 6.0;
-  numRings = 6.0;
-  numArms = 5;
+  numVert = 48.0;
+  numHorizon = 48.0;
+  numDiag = 48.0;
+  numRings = 12.0;
+  numArms = 4;
   numSpiral = 3;
+  vertSign = 1;
+  horizonSign = 1;
+  diagSign = 1;
+  armSign = 1;
+  ringSign = 1;
+  spiralSign = 1;
 }
 
 //--------------------------------------------------------------
@@ -68,94 +76,94 @@ void testApp::keyPressed(int key){
     bSpiral = !bSpiral;
   }
   if(key == 'q') {
-    vertSpeed += 1.0;
+    vertSpeed += 2.0;
   }
   if (key == 'Q') {
-    vertSpeed -= 1.0;
+    vertSpeed -= 2.0;
   }
   if(key == 'w') {
-    horizonSpeed += 1.0;
+    horizonSpeed += 2.0;
   }
   if (key == 'W') {
-    horizonSpeed -= 1.0;
+    horizonSpeed -= 2.0;
   }
   if(key == 'e') {
-    diagSpeed += 1.0;
+    diagSpeed += 2.0;
   }
   if (key == 'E') {
-    diagSpeed -= 1.0;
+    diagSpeed -= 2.0;
   }
   if(key == 'r') {
-    armSpeed += 1.0;
+    armSpeed += 2.0;
   }
   if (key == 'R') {
-    armSpeed -= 1.0;
+    armSpeed -= 2.0;
   }
   if(key == 't') {
-    ringSpeed += 1.0;
+    ringSpeed += 2.0;
   }
   if (key == 'T') {
-    ringSpeed -= 1.0;
+    ringSpeed -= 2.0;
   }
   if(key == 'y') {
-    spiralSpeed += 1.0;
+    spiralSpeed += 2.0;
   }
   if (key == 'Y') {
-    spiralSpeed -= 1.0;
+    spiralSpeed -= 2.0;
   }
   if(key == 'q') {
-    vertSpeed += 1.0;
+    vertSpeed += 2.0;
   }
   if (key == 'Q') {
-    vertSpeed -= 1.0;
+    vertSpeed -= 2.0;
   }
   if(key == 'w') {
-    horizonSpeed += 1.0;
+    horizonSpeed += 2.0;
   }
   if (key == 'W') {
-    horizonSpeed -= 1.0;
+    horizonSpeed -= 2.0;
   }
   if(key == 'e') {
-    diagSpeed += 1.0;
+    diagSpeed += 2.0;
   }
   if (key == 'E') {
-    diagSpeed -= 1.0;
+    diagSpeed -= 2.0;
   }
   if(key == 'r') {
-    armSpeed += 1.0;
+    armSpeed += 2.0;
   }
   if (key == 'R') {
-    armSpeed -= 1.0;
+    armSpeed -= 2.0;
   }
   if(key == 't') {
-    ringSpeed += 1.0;
+    ringSpeed += 2.0;
   }
   if (key == 'T') {
-    ringSpeed -= 1.0;
+    ringSpeed -= 2.0;
   }
   if(key == 'y') {
-    spiralSpeed += 1.0;
+    spiralSpeed += 2.0;
   }
   if (key == 'Y') {
-    spiralSpeed -= 1.0;
+    spiralSpeed -= 2.0;
   }
   if(key == 'a') {
-    numVert += 1.0;
+    numVert += 4.0;
   }
   if (key == 'A') {
-    numVert -= 1.0;
+    numVert -= 4.0;
   }
   if(key == 's') {
-    numHorizon += 1.0;
+    numHorizon += 4.0;
   }
   if (key == 'S') {
-    numHorizon -= 1.0;
+    numHorizon -= 4.0;
   }
   if(key == 'd') {
-    numDiag += 1.0;
+    numDiag += 4.0;
   }
   if (key == 'D') {
-    numDiag -= 1.0;
+    numDiag -= 4.0;
   }
   if(key == 'f') {
     numArms += 1;
@@ -174,6 +182,24 @@ void testApp::keyPressed(int key){
   }
   if (key == 'H') {
     numSpiral -= 1;
+  }
+  if (key == 'z') {
+    vertSign *= -1;
+  }
+  if (key == 'x') {
+    horizonSign *= -1;
+  }
+  if (key == 'c') {
+    diagSign *= -1;
+  }
+  if (key == 'v') {
+    armSign *= -1;
+  }
+  if (key == 'b') {
+    ringSign *= -1;
+  }
+  if (key == 'n') {
+    spiralSign *= -1;
   }
 }
 
@@ -248,4 +274,12 @@ void testApp::setUniforms(){
   shader.setUniform1f("numArms", numArms);
   shader.setUniform1f("numRings", numRings);
   shader.setUniform1f("numSpiral", numSpiral);
+  
+  //direction parameters
+  shader.setUniform1f("vertSign", vertSign);
+  shader.setUniform1f("horizonSign", horizonSign);
+  shader.setUniform1f("diagSign", diagSign);
+  shader.setUniform1f("armSign", armSign);
+  shader.setUniform1f("ringSign", ringSign);
+  shader.setUniform1f("spiralSign", spiralSign);
 }

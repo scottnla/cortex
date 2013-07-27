@@ -27,4 +27,5 @@ class testApp : public ofBaseApp{
   float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed;
   float numVert, numHorizon, numDiag, numRings;
   int numArms, numSpiral;
+  float vertSign, horizonSign, diagSign, armSign, ringSign, spiralSign;
 };
