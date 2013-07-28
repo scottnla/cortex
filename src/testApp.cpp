@@ -9,6 +9,7 @@ void testApp::setup(){
   height = ofGetHeight();
   shader.load("cortex");
   fbo.allocate(width,height);
+    
   //set default values
   bVert = 0;
   bHorizon = 0;
@@ -16,6 +17,12 @@ void testApp::setup(){
   bArms = 0;
   bRings = 0;
   bSpiral = 0;
+  sVert = 0;
+  sHorizon = 0;
+  sDiag = 0;
+  sArms = 0;
+  sRings = 0;
+  sSpiral = 0;
   vertSpeed = 4.0;
   horizonSpeed = 4.0;
   diagSpeed = 4.0;
@@ -38,6 +45,13 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
+  float dt = 1.f / ofGetFrameRate();
+  sVertTweener.update(dt);
+  sHorizonTweener.update(dt);
+  sDiagTweener.update(dt);
+  sArmsTweener.update(dt);
+  sRingsTweener.update(dt);
+  sSpiralTweener.update(dt);
 }
 
 //--------------------------------------------------------------
@@ -56,21 +70,57 @@ void testApp::draw(){
 void testApp::keyPressed(int key){
   if(key == '1') {
     bVert = !bVert;
+    
+    if(!sVertTweener.isRunning()) {
+      sVertTweener.init(2.f);
+      sVertTweener.add(&sVert, (bVert ? 1.f : -1.f));
+      sVertTweener.start();
+    }
   }
   if(key == '2') {
     bHorizon = !bHorizon;
+    
+    if(!sHorizonTweener.isRunning()) {
+      sHorizonTweener.init(2.f);
+      sHorizonTweener.add(&sHorizon, (bHorizon ? 1.f : -1.f));
+      sHorizonTweener.start();
+    }
   }
   if(key == '3') {
     bDiag = !bDiag;
+    
+    if(!sDiagTweener.isRunning()) {
+      sDiagTweener.init(2.f);
+      sDiagTweener.add(&sDiag, (bDiag ? 1.f : -1.f));
+      sDiagTweener.start();
+    }
   }
   if(key == '4') {
     bArms = !bArms;
+    
+    if(!sArmsTweener.isRunning()) {
+      sArmsTweener.init(2.f);
+      sArmsTweener.add(&sArms, (bArms ? 1.f : -1.f));
+      sArmsTweener.start();
+    }
   }
   if(key == '5') {
     bRings = !bRings;
+    
+    if(!sRingsTweener.isRunning()) {
+      sRingsTweener.init(2.f);
+      sRingsTweener.add(&sRings, (bRings ? 1.f : -1.f));
+      sRingsTweener.start();
+    }
   }
   if(key == '6') {
     bSpiral = !bSpiral;
+    
+    if(!sSpiralTweener.isRunning()) {
+      sSpiralTweener.init(2.f);
+      sSpiralTweener.add(&sSpiral, (bSpiral ? 1.f : -1.f));
+      sSpiralTweener.start();
+    }
   }
   if(key == 'q') {
     vertSpeed += 2.0;
@@ -207,7 +257,6 @@ void testApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y){
-
 }
 
 //--------------------------------------------------------------
@@ -249,13 +298,21 @@ void testApp::setUniforms(){
   shader.setUniform2fv("resolution",resolution);
 
   //flags for turning patterns on/off
-  shader.setUniform1f("bVert", bVert);
-  shader.setUniform1i("bHorizon", bHorizon);
-  shader.setUniform1i("bDiag", bDiag);
-  shader.setUniform1i("bArms", bArms);
-  shader.setUniform1i("bRings", bRings);
-  shader.setUniform1i("bSpiral", bSpiral);
+  shader.setUniform1i("bVert", true);
+  shader.setUniform1i("bHorizon", true);
+  shader.setUniform1i("bDiag", true);
+  shader.setUniform1i("bArms", true);
+  shader.setUniform1i("bRings", true);
+  shader.setUniform1i("bSpiral", true);
 
+  //scalars for tweening
+  shader.setUniform1f("sVert", sVert);
+  shader.setUniform1f("sHorizon", sHorizon);
+  shader.setUniform1f("sDiag", sDiag);
+  shader.setUniform1f("sArms", sArms);
+  shader.setUniform1f("sRings", sRings);
+  shader.setUniform1f("sSpiral", sSpiral);
+  
   //pattern speeds
   shader.setUniform1f("vertSpeed", vertSpeed);
   shader.setUniform1f("horizonSpeed", horizonSpeed);
