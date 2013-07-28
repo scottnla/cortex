@@ -4,6 +4,7 @@
 void testApp::setup(){
   ofEnableSmoothing();
   ofSetFrameRate(60);
+  ofSetVerticalSync(true);
   width = ofGetWidth();
   height = ofGetHeight();
   shader.load("cortex");
