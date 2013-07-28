@@ -2,7 +2,9 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
-  //ofSetFrameRate(60);
+  ofEnableSmoothing();
+  ofSetFrameRate(60);
+  ofSetVerticalSync(true);
   width = ofGetWidth();
   height = ofGetHeight();
   shader.load("cortex");
@@ -48,11 +50,6 @@ void testApp::draw(){
   fbo.end();
 
   fbo.draw(0,0,width,height);
-  
-  //ofSetHexColor(0xffffff);
-  //ofDrawBitmapString(ofToString(ofGetFrameRate(), 4), 10, 10);
-
-  //ofSaveFrame(true);
 }
 
 //--------------------------------------------------------------
