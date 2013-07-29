@@ -69,54 +69,48 @@ void testApp::draw(){
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
   if(key == '1') {
-    bVert = !bVert;
-    
     if(!sVertTweener.isRunning()) {
+      bVert = !bVert;
       sVertTweener.init(2.f);
       sVertTweener.add(&sVert, (bVert ? 1.f : -1.f));
       sVertTweener.start();
     }
   }
   if(key == '2') {
-    bHorizon = !bHorizon;
-    
     if(!sHorizonTweener.isRunning()) {
+      bHorizon = !bHorizon;
       sHorizonTweener.init(2.f);
       sHorizonTweener.add(&sHorizon, (bHorizon ? 1.f : -1.f));
       sHorizonTweener.start();
     }
   }
   if(key == '3') {
-    bDiag = !bDiag;
-    
     if(!sDiagTweener.isRunning()) {
+      bDiag = !bDiag;
       sDiagTweener.init(2.f);
       sDiagTweener.add(&sDiag, (bDiag ? 1.f : -1.f));
       sDiagTweener.start();
     }
   }
   if(key == '4') {
-    bArms = !bArms;
-    
     if(!sArmsTweener.isRunning()) {
+      bArms = !bArms;
       sArmsTweener.init(2.f);
       sArmsTweener.add(&sArms, (bArms ? 1.f : -1.f));
       sArmsTweener.start();
     }
   }
   if(key == '5') {
-    bRings = !bRings;
-    
     if(!sRingsTweener.isRunning()) {
+      bRings = !bRings;
       sRingsTweener.init(2.f);
       sRingsTweener.add(&sRings, (bRings ? 1.f : -1.f));
       sRingsTweener.start();
     }
   }
   if(key == '6') {
-    bSpiral = !bSpiral;
-    
     if(!sSpiralTweener.isRunning()) {
+      bSpiral = !bSpiral;
       sSpiralTweener.init(2.f);
       sSpiralTweener.add(&sSpiral, (bSpiral ? 1.f : -1.f));
       sSpiralTweener.start();
