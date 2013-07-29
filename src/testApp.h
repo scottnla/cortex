@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "tweener.h"
 
 class testApp : public ofBaseApp{
  public:
@@ -24,8 +25,11 @@ class testApp : public ofBaseApp{
   ofFbo fbo;
   float width, height;
   int bVert, bHorizon, bDiag, bArms, bRings, bSpiral;
+  float sVert, sHorizon, sDiag, sArms, sRings, sSpiral;
   float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed;
   float numVert, numHorizon, numDiag, numRings;
   int numArms, numSpiral;
   float vertSign, horizonSign, diagSign, armSign, ringSign, spiralSign;
+    
+  Tweener sVertTweener, sHorizonTweener, sDiagTweener, sArmsTweener, sRingsTweener, sSpiralTweener;
 };
