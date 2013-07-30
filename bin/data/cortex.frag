@@ -46,6 +46,6 @@ void main( void ) {
     }
     //overall brightness/color
     //color *= cos(time/10.0);
-    gl_FragColor = vec4( vec3( sin( color + time / 3.0 ) * 0.75, color, sin( color + time / 3.0 ) * 0.75 ), 1.0 );
+    gl_FragColor = vec4( vec3( sin( color + 0.05*time / 3.0 ) * 0.75, color, sin( color + 0.05*time / 3.0 ) * 0.75 ), 1.0 );
     
 }
