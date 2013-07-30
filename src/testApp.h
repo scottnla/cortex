@@ -24,12 +24,14 @@ class testApp : public ofBaseApp{
   ofShader shader;
   ofFbo fbo;
   float width, height;
+  float deltaSpeed;
   int bVert, bHorizon, bDiag, bArms, bRings, bSpiral;
   float sVert, sHorizon, sDiag, sArms, sRings, sSpiral;
   float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed;
-  float numVert, numHorizon, numDiag, numRings;
-  int numArms, numSpiral;
+  float numVert, numHorizon, numDiag, numRings, numArms, numSpiral;
   float vertSign, horizonSign, diagSign, armSign, ringSign, spiralSign;
     
-  Tweener sVertTweener, sHorizonTweener, sDiagTweener, sArmsTweener, sRingsTweener, sSpiralTweener;
+  Tweener sVertTweener, sHorizonTweener, sDiagTweener, sArmsTweener, sRingsTweener, sSpiralTweener,
+    vertSpeedTweener, horizonSpeedTweener, diagSpeedTweener, armSpeedTweener, ringSpeedTweener, spiralSpeedTweener,
+    numSpiralTweener;
 };
