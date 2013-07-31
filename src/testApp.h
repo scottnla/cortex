@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "tweener.h"
+#include "ofxSyphon.h"
 
 class testApp : public ofBaseApp{
  public:
@@ -34,4 +35,7 @@ class testApp : public ofBaseApp{
   Tweener sVertTweener, sHorizonTweener, sDiagTweener, sArmsTweener, sRingsTweener, sSpiralTweener,
     vertSpeedTweener, horizonSpeedTweener, diagSpeedTweener, armSpeedTweener, ringSpeedTweener, spiralSpeedTweener,
     numSpiralTweener;
+    
+    ofxSyphonClient syphonClient;
+    ofxSyphonServer syphonOutput;
 };

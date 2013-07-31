@@ -10,6 +10,8 @@ void testApp::setup(){
   shader.load("cortex");
   fbo.allocate(width,height);
     
+  syphonOutput.setName("Cortex");
+    
   //set default values
   deltaSpeed = 0.02;
   bVert = 0;
@@ -71,6 +73,7 @@ void testApp::draw(){
   fbo.end();
 
   fbo.draw(0,0,width,height);
+  syphonOutput.publishScreen();
 }
 
 //--------------------------------------------------------------
@@ -127,7 +130,7 @@ void testApp::keyPressed(int key){
     if(!vertSpeedTweener.isRunning()) {
       float target = vertSpeed + deltaSpeed;
       vertSpeedTweener.init(2.f);
-      vertSpeedTweener.add(&vertSpeed, target);
+      vertSpeedTweener.add(&vertSpeed, 1.0);
       vertSpeedTweener.start();
     }
   }
