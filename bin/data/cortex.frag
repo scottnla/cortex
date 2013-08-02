@@ -2,7 +2,7 @@ uniform float time;
 uniform vec2 resolution;
 uniform bool bVert, bHorizon, bDiag, bArms, bRings, bSpiral;
 uniform float sVert, sHorizon, sDiag, sArms, sRings, sSpiral;
-uniform float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed;
+uniform float vertPeriod, horizonPeriod, diagPeriod, armPeriod, ringPeriod, spiralPeriod;
 uniform float numVert, numHorizon, numDiag, numRings, numArms, numSpiral;
 uniform float vertSign, horizonSign, diagSign, armSign, ringSign, spiralSign;
 
@@ -22,30 +22,30 @@ void main( void ) {
     
     //Vertical Bands
     if(bVert) {
-        color += sVert * cos(numVert*cY + vertSign*vertSpeed*time);
+        color += sVert * cos(numVert*cY + vertSign*vertPeriod);
     }   
     //Horizontal Bands
     if(bHorizon) {
-        color += sHorizon * cos(numHorizon*cX + horizonSign*horizonSpeed*time);
+        color += sHorizon * cos(numHorizon*cX + horizonSign*horizonPeriod);
     }
     //Diagonal Bands
     if(bDiag) {
-        color += sDiag * (cos(2.0*numDiag*(cX*sin(spiralAngle) + cY*cos(spiralAngle)) + diagSign*diagSpeed*time));
+        color += sDiag * (cos(2.0*numDiag*(cX*sin(spiralAngle) + cY*cos(spiralAngle)) + diagSign*diagPeriod));
     }
     //Arms
     if(bArms) {
-        color += sArms * cos(numArms*newY + armSign*armSpeed*time);
+        color += sArms * cos(numArms*newY + armSign*armPeriod);
     }
     //Rings
     if(bRings) {
-        color += sRings * cos(numRings*newX + ringSign*ringSpeed*time);
+        color += sRings * cos(numRings*newX + ringSign*ringPeriod);
     }
     //Spirals
     if(bSpiral) {
-        color += sSpiral * (cos(2.0*numSpiral*(newX*sin(spiralAngle) + newY*cos(spiralAngle)) + spiralSign*spiralSpeed*time));
+        color += sSpiral * (cos(2.0*numSpiral*(newX*sin(spiralAngle) + newY*cos(spiralAngle)) + spiralSign*spiralPeriod));
     }
     //overall brightness/color
     //color *= cos(time/10.0);
-    gl_FragColor = vec4( vec3( sin( color + 0.05*time / 3.0 ) * 0.75, color, sin( color + 0.05*time / 3.0 ) * 0.75 ), 1.0 );
+    gl_FragColor = vec4( vec3( sin( color + time / 3.0 ) * 0.75, color, sin( color + time / 3.0 ) * 0.75 ), 1.0 );
     
 }
