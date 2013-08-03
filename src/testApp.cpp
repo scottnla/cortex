@@ -79,6 +79,15 @@ void testApp::update(){
   armSpeedTweener.update(dt);
   ringSpeedTweener.update(dt);
   spiralSpeedTweener.update(dt);
+  spiralSignTweener.update(dt);
+    
+  numVertTweener.update(dt);
+    numHorizonTweener.update(dt);
+    numDiagTweener.update(dt);
+    numDiagAltTweener.update(dt);
+    numArmsTweener.update(dt);
+    numRingsTweener.update(dt);
+  numSpiralTweener.update(dt);
   
   vertPeriod += vertSpeed*dt;
   horizonPeriod += horizonSpeed*dt;
@@ -162,7 +171,6 @@ void testApp::keyPressed(int key){
   }
   if(key == 'q') {
     if(!vertSpeedTweener.isRunning()) {
-      float target = vertSpeed + deltaSpeed;
       vertSpeedTweener.init(SPEED_TWEEN_TIME);
       vertSpeedTweener.add(&vertSpeed, SPEED_DELTA);
       vertSpeedTweener.start();
@@ -170,7 +178,6 @@ void testApp::keyPressed(int key){
   }
   if (key == 'Q') {
     if(!vertSpeedTweener.isRunning()) {
-      float target = vertSpeed - deltaSpeed;
       vertSpeedTweener.init(SPEED_TWEEN_TIME);
       vertSpeedTweener.add(&vertSpeed, -SPEED_DELTA);
       vertSpeedTweener.start();
@@ -178,7 +185,6 @@ void testApp::keyPressed(int key){
   }
   if(key == 'w') {
     if(!horizonSpeedTweener.isRunning()) {
-      float target = horizonSpeed + deltaSpeed;
       horizonSpeedTweener.init(SPEED_TWEEN_TIME);
       horizonSpeedTweener.add(&horizonSpeed, SPEED_DELTA);
       horizonSpeedTweener.start();
@@ -186,7 +192,6 @@ void testApp::keyPressed(int key){
   }
   if (key == 'W') {
     if(!horizonSpeedTweener.isRunning()) {
-      float target = horizonSpeed - deltaSpeed;
       horizonSpeedTweener.init(SPEED_TWEEN_TIME);
       horizonSpeedTweener.add(&horizonSpeed, -SPEED_DELTA);
       horizonSpeedTweener.start();
@@ -194,7 +199,6 @@ void testApp::keyPressed(int key){
   }
   if(key == 'e') {
     if(!diagSpeedTweener.isRunning()) {
-      float target = diagSpeed + deltaSpeed;
       diagSpeedTweener.init(SPEED_TWEEN_TIME);
       diagSpeedTweener.add(&diagSpeed, SPEED_DELTA);
       diagSpeedTweener.start();
@@ -202,7 +206,6 @@ void testApp::keyPressed(int key){
   }
   if (key == 'E') {
     if(!diagSpeedTweener.isRunning()) {
-      float target = diagSpeed - deltaSpeed;
       diagSpeedTweener.init(SPEED_TWEEN_TIME);
       diagSpeedTweener.add(&diagSpeed, -SPEED_DELTA);
       diagSpeedTweener.start();
@@ -210,7 +213,6 @@ void testApp::keyPressed(int key){
   }
   if(key == 'r') {
     if(!diagAltSpeedTweener.isRunning()) {
-      float target = diagAltSpeed + deltaSpeed;
       diagAltSpeedTweener.init(SPEED_TWEEN_TIME);
       diagAltSpeedTweener.add(&diagAltSpeed, SPEED_DELTA);
       diagAltSpeedTweener.start();
@@ -218,7 +220,6 @@ void testApp::keyPressed(int key){
   }
   if (key == 'R') {
     if(!diagAltSpeedTweener.isRunning()) {
-      float target = diagAltSpeed - deltaSpeed;
       diagAltSpeedTweener.init(SPEED_TWEEN_TIME);
       diagAltSpeedTweener.add(&diagAltSpeed, -SPEED_DELTA);
       diagAltSpeedTweener.start();
@@ -226,7 +227,6 @@ void testApp::keyPressed(int key){
   }
   if(key == 't') {
     if(!diagSpeedTweener.isRunning()) {
-      float target = armSpeed + deltaSpeed;
       armSpeedTweener.init(SPEED_TWEEN_TIME);
       armSpeedTweener.add(&armSpeed, SPEED_DELTA);
       armSpeedTweener.start();
@@ -234,7 +234,6 @@ void testApp::keyPressed(int key){
   }
   if (key == 'T') {
     if(!armSpeedTweener.isRunning()) {
-      float target = armSpeed - deltaSpeed;
       armSpeedTweener.init(SPEED_TWEEN_TIME);
       armSpeedTweener.add(&armSpeed, -SPEED_DELTA);
       armSpeedTweener.start();
@@ -242,7 +241,6 @@ void testApp::keyPressed(int key){
   }
   if(key == 'y') {
     if(!armSpeedTweener.isRunning()) {
-      float target = ringSpeed + deltaSpeed;
       ringSpeedTweener.init(SPEED_TWEEN_TIME);
       ringSpeedTweener.add(&ringSpeed, SPEED_DELTA);
       ringSpeedTweener.start();
@@ -250,7 +248,6 @@ void testApp::keyPressed(int key){
   }
   if (key == 'Y') {
     if(!ringSpeedTweener.isRunning()) {
-      float target = ringSpeed - deltaSpeed;
       ringSpeedTweener.init(SPEED_TWEEN_TIME);
       ringSpeedTweener.add(&ringSpeed, -SPEED_DELTA);
       ringSpeedTweener.start();
@@ -258,7 +255,6 @@ void testApp::keyPressed(int key){
   }
   if(key == 'u') {
     if(!spiralSpeedTweener.isRunning()) {
-      float target = spiralSpeed + deltaSpeed;
       spiralSpeedTweener.init(SPEED_TWEEN_TIME);
       spiralSpeedTweener.add(&spiralSpeed, SPEED_DELTA);
       spiralSpeedTweener.start();
@@ -266,74 +262,148 @@ void testApp::keyPressed(int key){
   }
   if (key == 'U') {
     if(!spiralSpeedTweener.isRunning()) {
-      float target = spiralSpeed - deltaSpeed;
       spiralSpeedTweener.init(SPEED_TWEEN_TIME);
       spiralSpeedTweener.add(&spiralSpeed, -SPEED_DELTA);
       spiralSpeedTweener.start();
     }
   }
-  if(key == 'a') {
-    numVert += 4.0;
-  }
-  if (key == 'A') {
-    numVert -= 4.0;
-  }
-  if(key == 's') {
-    numHorizon += 4.0;
-  }
-  if (key == 'S') {
-    numHorizon -= 4.0;
-  }
-  if(key == 'd') {
-    numDiag += 4.0;
-  }
-  if (key == 'D') {
-    numDiag -= 4.0;
-  }
+    if(key == 'a') {
+        numVert += 4.0;
+        if(!numVertTweener.isRunning()) {
+            numVertTweener.init(SPEED_TWEEN_TIME);
+            numVertTweener.add(&numVert , 4.f);
+            numVertTweener.start();
+        }
+    }
+    if(key == 'A') {
+        numVert -= 4.0;
+        if(!numVertTweener.isRunning()) {
+            numVertTweener.init(SPEED_TWEEN_TIME);
+            numVertTweener.add(&numVert , -4.f);
+            numVertTweener.start();
+        }
+    }
+    if(key == 's') {
+        numHorizon += 4.0;
+        if(!numHorizonTweener.isRunning()) {
+            numHorizonTweener.init(SPEED_TWEEN_TIME);
+            numHorizonTweener.add(&numHorizon, 4.f);
+            numHorizonTweener.start();
+        }
+    }
+    if (key == 'S') {
+        numHorizon -= 4.0;
+        if(!numHorizonTweener.isRunning()) {
+            numHorizonTweener.init(SPEED_TWEEN_TIME);
+            numHorizonTweener.add(&numHorizon, -4.f);
+            numHorizonTweener.start();
+        }
+    }
+    if(key == 'd') {
+        numDiag += 4.0;
+        if(!numDiagTweener.isRunning()) {
+            numDiagTweener.init(SPEED_TWEEN_TIME);
+            numDiagTweener.add(&numDiag, 4.f);
+            numDiagTweener.start();
+        }
+    }
+    if (key == 'D') {
+        numDiag -= 4.0;
+        if(!numDiagTweener.isRunning()) {
+            numDiagTweener.init(SPEED_TWEEN_TIME);
+            numDiagTweener.add(&numDiag, -4.f);
+            numDiagTweener.start();
+        }
+    }
   if(key == 'f') {
-    numDiagAlt += 4.0;
+      numDiagAlt += 4.0;
+      if(!numDiagAltTweener.isRunning()) {
+          numDiagAltTweener.init(SPEED_TWEEN_TIME);
+          numDiagAltTweener.add(&numDiagAlt, 4.f);
+          numDiagAltTweener.start();
+      }
   }
   if (key == 'F') {
-    numDiagAlt -= 4.0;
+      numDiagAlt -= 4.0;
+      if(!numDiagAltTweener.isRunning()) {
+          numDiagAltTweener.init(SPEED_TWEEN_TIME);
+          numDiagAltTweener.add(&numDiagAlt, -4.f);
+          numDiagAltTweener.start();
+      }
   }
   if(key == 'g') {
-    numArms += 1;
+      numArms += 1;
+      if(!numArmsTweener.isRunning()) {
+          numArmsTweener.init(SPEED_TWEEN_TIME);
+          numArmsTweener.add(&numArms, 1.f);
+          numArmsTweener.start();
+      }
   }
   if (key == 'G') {
-    numArms -= 1;
+      numArms -= 1;
+      if(!numArmsTweener.isRunning()) {
+          numArmsTweener.init(SPEED_TWEEN_TIME);
+          numArmsTweener.add(&numArms, -1.f);
+          numArmsTweener.start();
+      }
   }
   if(key == 'h') {
-    numRings += 1.0;
+      numRings += 1;
+      if(!numRingsTweener.isRunning()) {
+          numRingsTweener.init(SPEED_TWEEN_TIME);
+          numRingsTweener.add(&numRings, 1.f);
+          numRingsTweener.start();
+      }
   }
   if (key == 'H') {
-    numRings -= 1.0;
+      numRings -= 1;
+      if(!numRingsTweener.isRunning()) {
+          numRingsTweener.init(SPEED_TWEEN_TIME);
+          numRingsTweener.add(&numRings, -1.f);
+          numRingsTweener.start();
+      }
   }
-  if(key == 'j') {
-    numSpiral++;
+  if (key == 'j') {
+      numSpiral += 1;
+      if(!numSpiralTweener.isRunning()) {
+          numSpiralTweener.init(SPEED_TWEEN_TIME);
+          numSpiralTweener.add(&numSpiral, 1.f);
+          numSpiralTweener.start();
+      }
   }
   if (key == 'J') {
-    numSpiral -= 1;
+      numSpiral -= 1;
+      if(!numSpiralTweener.isRunning()) {
+          numSpiralTweener.init(SPEED_TWEEN_TIME);
+          numSpiralTweener.add(&numSpiral, -1.f);
+          numSpiralTweener.start();
+      }
   }
   if (key == 'z') {
-    vertSign *= -1;
+    vertSign *= -1.0;
   }
   if (key == 'x') {
-    horizonSign *= -1;
+    horizonSign *= -1.0;
   }
   if (key == 'c') {
-    diagSign *= -1;
+    diagSign *= -1.0;
   }
   if (key == 'v') {
-    diagAltSign *= -1;
+    diagAltSign *= -1.0;
   }
   if (key == 'b') {
-    armSign *= -1;
+    armSign *= -1.0;
   }
   if (key == 'n') {
-    ringSign *= -1;
+    ringSign *= -1.0;
   }
   if (key == 'm') {
-    spiralSign *= -1;
+      if(!spiralSignTweener.isRunning()) {
+          spiralSign *= -1.0;
+          spiralSignTweener.init(TOGGLE_TWEEN_TIME);
+          spiralSignTweener.add(&spiralSign, spiralSign);
+          spiralSignTweener.start();
+      }
   }
 }
 
