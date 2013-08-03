@@ -1,10 +1,10 @@
 uniform float time;
 uniform vec2 resolution;
-uniform bool bVert, bHorizon, bDiag, bArms, bRings, bSpiral;
-uniform float sVert, sHorizon, sDiag, sArms, sRings, sSpiral;
-uniform float vertPeriod, horizonPeriod, diagPeriod, armPeriod, ringPeriod, spiralPeriod;
-uniform float numVert, numHorizon, numDiag, numRings, numArms, numSpiral;
-uniform float vertSign, horizonSign, diagSign, armSign, ringSign, spiralSign;
+uniform bool bVert, bHorizon, bDiag, bDiagAlt, bArms, bRings, bSpiral;
+uniform float sVert, sHorizon, sDiag, sDiagAlt, sArms, sRings, sSpiral;
+uniform float vertPeriod, horizonPeriod, diagPeriod, diagAltPeriod, armPeriod, ringPeriod, spiralPeriod;
+uniform float numVert, numHorizon, numDiag, numDiagAlt, numRings, numArms, numSpiral;
+uniform float vertSign, horizonSign, diagSign, diagAltSign, armSign, ringSign, spiralSign;
 
 void main( void ) {
     vec2 position = (gl_FragCoord.xy/resolution.xy);
@@ -17,6 +17,7 @@ void main( void ) {
      
     float PI = 3.14159;
     float spiralAngle = PI/3.0;
+    float spiralAngleAlt = 2.0*PI - PI/3.0;
     
     float color = 0.0;
     
@@ -31,6 +32,10 @@ void main( void ) {
     //Diagonal Bands
     if(bDiag) {
         color += sDiag * (cos(2.0*numDiag*(cX*sin(spiralAngle) + cY*cos(spiralAngle)) + diagSign*diagPeriod));
+    }
+    //Perpendicular Diagonal bands
+    if(bDiagAlt) {
+        color += sDiagAlt * (cos(2.0*numDiagAlt*(cX*sin(spiralAngleAlt) + cY*cos(spiralAngleAlt)) + diagAltSign*diagAltPeriod));
     }
     //Arms
     if(bArms) {

@@ -31,14 +31,16 @@ class testApp : public ofBaseApp{
   ofFbo fbo;
   float width, height;
   float deltaSpeed;
-  int bVert, bHorizon, bDiag, bArms, bRings, bSpiral;
-  float sVert, sHorizon, sDiag, sArms, sRings, sSpiral;
-  float vertSpeed, horizonSpeed, diagSpeed, armSpeed, ringSpeed, spiralSpeed;
-  float vertPeriod, horizonPeriod, diagPeriod, armPeriod, ringPeriod, spiralPeriod;
-  float numVert, numHorizon, numDiag, numRings, numArms, numSpiral;
-  float vertSign, horizonSign, diagSign, armSign, ringSign, spiralSign;
+  int bVert, bHorizon, bDiag, bDiagAlt, bArms, bRings, bSpiral;
+  float sVert, sHorizon, sDiag, sDiagAlt, sArms, sRings, sSpiral;
+  float vertSpeed, horizonSpeed, diagSpeed, diagAltSpeed, armSpeed, ringSpeed, spiralSpeed;
+  float vertPeriod, horizonPeriod, diagPeriod, diagAltPeriod, armPeriod, ringPeriod, spiralPeriod;
+  float numVert, numHorizon, numDiag, numDiagAlt, numRings, numArms, numSpiral;
+  float vertSign, horizonSign, diagSign, diagAltSign, armSign, ringSign, spiralSign;
     
-  Tweener sVertTweener, sHorizonTweener, sDiagTweener, sArmsTweener, sRingsTweener, sSpiralTweener, vertSpeedTweener, horizonSpeedTweener, diagSpeedTweener, armSpeedTweener, ringSpeedTweener, spiralSpeedTweener, numSpiralTweener;
+  Tweener sVertTweener, sHorizonTweener, sDiagTweener, sDiagAltTweener, sArmsTweener, sRingsTweener, sSpiralTweener, 
+    vertSpeedTweener, horizonSpeedTweener, diagSpeedTweener, diagAltSpeedTweener, armSpeedTweener, ringSpeedTweener, spiralSpeedTweener,
+    numSpiralTweener;
     
     ofxSyphonClient syphonClient;
     ofxSyphonServer syphonOutput;

@@ -15,6 +15,7 @@ void testApp::setup(){
   bVert = 0;
   bHorizon = 0;
   bDiag = 0;
+  bDiagAlt = 0;
   bArms = 0;
   bRings = 0;
   bSpiral = 0;
@@ -22,6 +23,7 @@ void testApp::setup(){
   sVert = 0;
   sHorizon = 0;
   sDiag = 0;
+  sDiagAlt = 0;
   sArms = 0;
   sRings = 0;
   sSpiral = 0;
@@ -29,26 +31,31 @@ void testApp::setup(){
   vertSpeed = SPEED_DEFAULT;
   horizonSpeed = SPEED_DEFAULT;
   diagSpeed = SPEED_DEFAULT;
+  diagAltSpeed = SPEED_DEFAULT;
   armSpeed = SPEED_DEFAULT;
   ringSpeed = SPEED_DEFAULT;
   spiralSpeed = SPEED_DEFAULT;
   
   vertPeriod = 0;
   horizonPeriod = 0;
+  diagPeriod = 0;
+  diagAltPeriod = 0;
   armPeriod = 0;
   ringPeriod = 0;
   spiralPeriod = 0;
   
-  numVert = 48.0;
-  numHorizon = 48.0;
+  numVert = 96.0;
+  numHorizon = 96.0;
   numDiag = 48.0;
+  numDiagAlt = 48.0;
   numRings = 12.0;
-  numArms = 4;
+  numArms = 3;
   numSpiral = 3;
   
   vertSign = 1;
   horizonSign = 1;
   diagSign = 1;
+  diagAltSign = 1;
   armSign = 1;
   ringSign = 1;
   spiralSign = 1;
@@ -61,19 +68,22 @@ void testApp::update(){
   sVertTweener.update(dt);
   sHorizonTweener.update(dt);
   sDiagTweener.update(dt);
+  sDiagAltTweener.update(dt);
   sArmsTweener.update(dt);
   sRingsTweener.update(dt);
   sSpiralTweener.update(dt);
   vertSpeedTweener.update(dt);
   horizonSpeedTweener.update(dt);
   diagSpeedTweener.update(dt);
+  diagAltSpeedTweener.update(dt);
   armSpeedTweener.update(dt);
   ringSpeedTweener.update(dt);
-  
   spiralSpeedTweener.update(dt);
   
   vertPeriod += vertSpeed*dt;
   horizonPeriod += horizonSpeed*dt;
+  diagPeriod += diagSpeed*dt;
+  diagAltPeriod += diagAltSpeed*dt;
   armPeriod += armSpeed*dt;
   ringPeriod += ringSpeed*dt;
   spiralPeriod += spiralSpeed*dt;
@@ -119,6 +129,14 @@ void testApp::keyPressed(int key){
     }
   }
   if(key == '4') {
+    if(!sDiagAltTweener.isRunning()) {
+      bDiagAlt = !bDiagAlt;
+      sDiagAltTweener.init(TOGGLE_TWEEN_TIME);
+      sDiagAltTweener.add(&sDiagAlt, (bDiagAlt ? 1.f : -1.f));
+      sDiagAltTweener.start();
+    }
+  }
+  if(key == '5') {
     if(!sArmsTweener.isRunning()) {
       bArms = !bArms;
       sArmsTweener.init(TOGGLE_TWEEN_TIME);
@@ -126,7 +144,7 @@ void testApp::keyPressed(int key){
       sArmsTweener.start();
     }
   }
-  if(key == '5') {
+  if(key == '6') {
     if(!sRingsTweener.isRunning()) {
       bRings = !bRings;
       sRingsTweener.init(TOGGLE_TWEEN_TIME);
@@ -134,7 +152,7 @@ void testApp::keyPressed(int key){
       sRingsTweener.start();
     }
   }
-  if(key == '6') {
+  if(key == '7') {
     if(!sSpiralTweener.isRunning()) {
       bSpiral = !bSpiral;
       sSpiralTweener.init(TOGGLE_TWEEN_TIME);
@@ -191,6 +209,22 @@ void testApp::keyPressed(int key){
     }
   }
   if(key == 'r') {
+    if(!diagAltSpeedTweener.isRunning()) {
+      float target = diagAltSpeed + deltaSpeed;
+      diagAltSpeedTweener.init(SPEED_TWEEN_TIME);
+      diagAltSpeedTweener.add(&diagAltSpeed, SPEED_DELTA);
+      diagAltSpeedTweener.start();
+    }
+  }
+  if (key == 'R') {
+    if(!diagAltSpeedTweener.isRunning()) {
+      float target = diagAltSpeed - deltaSpeed;
+      diagAltSpeedTweener.init(SPEED_TWEEN_TIME);
+      diagAltSpeedTweener.add(&diagAltSpeed, -SPEED_DELTA);
+      diagAltSpeedTweener.start();
+    }
+  }
+  if(key == 't') {
     if(!diagSpeedTweener.isRunning()) {
       float target = armSpeed + deltaSpeed;
       armSpeedTweener.init(SPEED_TWEEN_TIME);
@@ -198,7 +232,7 @@ void testApp::keyPressed(int key){
       armSpeedTweener.start();
     }
   }
-  if (key == 'R') {
+  if (key == 'T') {
     if(!armSpeedTweener.isRunning()) {
       float target = armSpeed - deltaSpeed;
       armSpeedTweener.init(SPEED_TWEEN_TIME);
@@ -206,7 +240,7 @@ void testApp::keyPressed(int key){
       armSpeedTweener.start();
     }
   }
-  if(key == 't') {
+  if(key == 'y') {
     if(!armSpeedTweener.isRunning()) {
       float target = ringSpeed + deltaSpeed;
       ringSpeedTweener.init(SPEED_TWEEN_TIME);
@@ -214,7 +248,7 @@ void testApp::keyPressed(int key){
       ringSpeedTweener.start();
     }
   }
-  if (key == 'T') {
+  if (key == 'Y') {
     if(!ringSpeedTweener.isRunning()) {
       float target = ringSpeed - deltaSpeed;
       ringSpeedTweener.init(SPEED_TWEEN_TIME);
@@ -222,7 +256,7 @@ void testApp::keyPressed(int key){
       ringSpeedTweener.start();
     }
   }
-  if(key == 'y') {
+  if(key == 'u') {
     if(!spiralSpeedTweener.isRunning()) {
       float target = spiralSpeed + deltaSpeed;
       spiralSpeedTweener.init(SPEED_TWEEN_TIME);
@@ -230,7 +264,7 @@ void testApp::keyPressed(int key){
       spiralSpeedTweener.start();
     }
   }
-  if (key == 'Y') {
+  if (key == 'U') {
     if(!spiralSpeedTweener.isRunning()) {
       float target = spiralSpeed - deltaSpeed;
       spiralSpeedTweener.init(SPEED_TWEEN_TIME);
@@ -257,21 +291,27 @@ void testApp::keyPressed(int key){
     numDiag -= 4.0;
   }
   if(key == 'f') {
-    numArms += 1;
+    numDiagAlt += 4.0;
   }
   if (key == 'F') {
+    numDiagAlt -= 4.0;
+  }
+  if(key == 'g') {
+    numArms += 1;
+  }
+  if (key == 'G') {
     numArms -= 1;
   }
-  if(key == 'G') {
+  if(key == 'h') {
     numRings += 1.0;
   }
-  if (key == 'g') {
+  if (key == 'H') {
     numRings -= 1.0;
   }
-  if(key == 'h') {
+  if(key == 'j') {
     numSpiral++;
   }
-  if (key == 'H') {
+  if (key == 'J') {
     numSpiral -= 1;
   }
   if (key == 'z') {
@@ -284,12 +324,15 @@ void testApp::keyPressed(int key){
     diagSign *= -1;
   }
   if (key == 'v') {
-    armSign *= -1;
+    diagAltSign *= -1;
   }
   if (key == 'b') {
-    ringSign *= -1;
+    armSign *= -1;
   }
   if (key == 'n') {
+    ringSign *= -1;
+  }
+  if (key == 'm') {
     spiralSign *= -1;
   }
 }
@@ -345,6 +388,7 @@ void testApp::setUniforms(){
   shader.setUniform1i("bVert", true);
   shader.setUniform1i("bHorizon", true);
   shader.setUniform1i("bDiag", true);
+  shader.setUniform1i("bDiagAlt", true);
   shader.setUniform1i("bArms", true);
   shader.setUniform1i("bRings", true);
   shader.setUniform1i("bSpiral", true);
@@ -353,6 +397,7 @@ void testApp::setUniforms(){
   shader.setUniform1f("sVert", sVert);
   shader.setUniform1f("sHorizon", sHorizon);
   shader.setUniform1f("sDiag", sDiag);
+  shader.setUniform1f("sDiagAlt", sDiagAlt);
   shader.setUniform1f("sArms", sArms);
   shader.setUniform1f("sRings", sRings);
   shader.setUniform1f("sSpiral", sSpiral);
@@ -361,6 +406,7 @@ void testApp::setUniforms(){
   shader.setUniform1f("vertPeriod", vertPeriod);
   shader.setUniform1f("horizonPeriod", horizonPeriod);
   shader.setUniform1f("diagPeriod", diagPeriod);
+  shader.setUniform1f("diagAltPeriod", diagAltPeriod);
   shader.setUniform1f("armPeriod", armPeriod);
   shader.setUniform1f("ringPeriod", ringPeriod);
   shader.setUniform1f("spiralPeriod", spiralPeriod);
@@ -369,6 +415,7 @@ void testApp::setUniforms(){
   shader.setUniform1f("numVert", numVert);
   shader.setUniform1f("numHorizon", numHorizon);
   shader.setUniform1f("numDiag", numDiag);
+  shader.setUniform1f("numDiagAlt", numDiagAlt);
   shader.setUniform1f("numArms", numArms);
   shader.setUniform1f("numRings", numRings);
   shader.setUniform1f("numSpiral", numSpiral);
@@ -377,6 +424,7 @@ void testApp::setUniforms(){
   shader.setUniform1f("vertSign", vertSign);
   shader.setUniform1f("horizonSign", horizonSign);
   shader.setUniform1f("diagSign", diagSign);
+  shader.setUniform1f("diagAltSign", diagAltSign);
   shader.setUniform1f("armSign", armSign);
   shader.setUniform1f("ringSign", ringSign);
   shader.setUniform1f("spiralSign", spiralSign);
