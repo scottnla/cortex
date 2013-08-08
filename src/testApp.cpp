@@ -19,6 +19,7 @@ void testApp::setup(){
   bArms = 0;
   bRings = 0;
   bSpiral = 0;
+    bSpiralAlt = 0;
   
   sVert = 0;
   sHorizon = 0;
@@ -27,6 +28,7 @@ void testApp::setup(){
   sArms = 0;
   sRings = 0;
   sSpiral = 0;
+    sSpiralAlt = 0;
   
   vertSpeed = SPEED_DEFAULT;
   horizonSpeed = SPEED_DEFAULT;
@@ -35,7 +37,8 @@ void testApp::setup(){
   armSpeed = SPEED_DEFAULT;
   ringSpeed = SPEED_DEFAULT;
   spiralSpeed = SPEED_DEFAULT;
-  
+    spiralAltSpeed = SPEED_DEFAULT;
+    
   vertPeriod = 0;
   horizonPeriod = 0;
   diagPeriod = 0;
@@ -43,7 +46,8 @@ void testApp::setup(){
   armPeriod = 0;
   ringPeriod = 0;
   spiralPeriod = 0;
-  
+    spiralAltPeriod = 0;
+    
   numVert = 96.0;
   numHorizon = 96.0;
   numDiag = 48.0;
@@ -51,14 +55,7 @@ void testApp::setup(){
   numRings = 12.0;
   numArms = 3;
   numSpiral = 3;
-  
-  vertSign = 1;
-  horizonSign = 1;
-  diagSign = 1;
-  diagAltSign = 1;
-  armSign = 1;
-  ringSign = 1;
-  spiralSign = 1;
+    numSpiralAlt = 3;
 }
 
 //--------------------------------------------------------------
@@ -72,6 +69,8 @@ void testApp::update(){
   sArmsTweener.update(dt);
   sRingsTweener.update(dt);
   sSpiralTweener.update(dt);
+    sSpiralAltTweener.update(dt);
+    
   vertSpeedTweener.update(dt);
   horizonSpeedTweener.update(dt);
   diagSpeedTweener.update(dt);
@@ -79,6 +78,7 @@ void testApp::update(){
   armSpeedTweener.update(dt);
   ringSpeedTweener.update(dt);
   spiralSpeedTweener.update(dt);
+    spiralAltSpeedTweener.update(dt);
     
   numVertTweener.update(dt);
   numHorizonTweener.update(dt);
@@ -87,6 +87,7 @@ void testApp::update(){
   numArmsTweener.update(dt);
   numRingsTweener.update(dt);   
   numSpiralTweener.update(dt);
+    numSpiralAltTweener.update(dt);
   
   vertPeriod += vertSpeed*dt;
   horizonPeriod += horizonSpeed*dt;
@@ -95,6 +96,7 @@ void testApp::update(){
   armPeriod += armSpeed*dt;
   ringPeriod += ringSpeed*dt;
   spiralPeriod += spiralSpeed*dt;
+  spiralAltPeriod += spiralAltSpeed*dt;
 }
 
 //--------------------------------------------------------------
@@ -160,14 +162,22 @@ void testApp::keyPressed(int key){
       sRingsTweener.start();
     }
   }
-  if(key == '7') {
-    if(!sSpiralTweener.isRunning()) {
-      bSpiral = !bSpiral;
-      sSpiralTweener.init(TOGGLE_TWEEN_TIME);
-      sSpiralTweener.add(&sSpiral, (bSpiral ? 1.f : -1.f));
-      sSpiralTweener.start();
+    if(key == '7') {
+        if(!sSpiralTweener.isRunning()) {
+            bSpiral = !bSpiral;
+            sSpiralTweener.init(TOGGLE_TWEEN_TIME);
+            sSpiralTweener.add(&sSpiral, (bSpiral ? 1.f : -1.f));
+            sSpiralTweener.start();
+        }
     }
-  }
+    if(key == '8') {
+        if(!sSpiralAltTweener.isRunning()) {
+            bSpiralAlt = !bSpiralAlt;
+            sSpiralAltTweener.init(TOGGLE_TWEEN_TIME);
+            sSpiralAltTweener.add(&sSpiralAlt, (bSpiralAlt ? 1.f : -1.f));
+            sSpiralAltTweener.start();
+        }
+    }
   if(key == 'q') {
     if(!vertSpeedTweener.isRunning()) {
       vertSpeedTweener.init(SPEED_TWEEN_TIME);
@@ -252,20 +262,34 @@ void testApp::keyPressed(int key){
       ringSpeedTweener.start();
     }
   }
-  if(key == 'u') {
-    if(!spiralSpeedTweener.isRunning()) {
-      spiralSpeedTweener.init(SPEED_TWEEN_TIME);
-      spiralSpeedTweener.add(&spiralSpeed, SPEED_DELTA);
-      spiralSpeedTweener.start();
+    if(key == 'u') {
+        if(!spiralSpeedTweener.isRunning()) {
+            spiralSpeedTweener.init(SPEED_TWEEN_TIME);
+            spiralSpeedTweener.add(&spiralSpeed, SPEED_DELTA);
+            spiralSpeedTweener.start();
+        }
     }
-  }
-  if (key == 'U') {
-    if(!spiralSpeedTweener.isRunning()) {
-      spiralSpeedTweener.init(SPEED_TWEEN_TIME);
-      spiralSpeedTweener.add(&spiralSpeed, -SPEED_DELTA);
-      spiralSpeedTweener.start();
+    if (key == 'U') {
+        if(!spiralSpeedTweener.isRunning()) {
+            spiralSpeedTweener.init(SPEED_TWEEN_TIME);
+            spiralSpeedTweener.add(&spiralSpeed, -SPEED_DELTA);
+            spiralSpeedTweener.start();
+        }
     }
-  }
+    if(key == 'i') {
+        if(!spiralAltSpeedTweener.isRunning()) {
+            spiralAltSpeedTweener.init(SPEED_TWEEN_TIME);
+            spiralAltSpeedTweener.add(&spiralAltSpeed, SPEED_DELTA);
+            spiralAltSpeedTweener.start();
+        }
+    }
+    if (key == 'I') {
+        if(!spiralAltSpeedTweener.isRunning()) {
+            spiralAltSpeedTweener.init(SPEED_TWEEN_TIME);
+            spiralAltSpeedTweener.add(&spiralAltSpeed, -SPEED_DELTA);
+            spiralAltSpeedTweener.start();
+        }
+    }
     if(key == 'a') {
         numVert += 4.0;
         if(!numVertTweener.isRunning()) {
@@ -362,22 +386,38 @@ void testApp::keyPressed(int key){
           numRingsTweener.start();
       }
   }
-  if (key == 'j') {
-      numSpiral += 1;
-      if(!numSpiralTweener.isRunning()) {
-          numSpiralTweener.init(SPEED_TWEEN_TIME);
-          numSpiralTweener.add(&numSpiral, 1.f);
-          numSpiralTweener.start();
-      }
-  }
-  if (key == 'J') {
-      numSpiral -= 1;
-      if(!numSpiralTweener.isRunning()) {
-          numSpiralTweener.init(SPEED_TWEEN_TIME);
-          numSpiralTweener.add(&numSpiral, -1.f);
-          numSpiralTweener.start();
-      }
-  }
+    if (key == 'j') {
+        numSpiral += 1;
+        if(!numSpiralTweener.isRunning()) {
+            numSpiralTweener.init(SPEED_TWEEN_TIME);
+            numSpiralTweener.add(&numSpiral, 1.f);
+            numSpiralTweener.start();
+        }
+    }
+    if (key == 'J') {
+        numSpiral -= 1;
+        if(!numSpiralTweener.isRunning()) {
+            numSpiralTweener.init(SPEED_TWEEN_TIME);
+            numSpiralTweener.add(&numSpiral, -1.f);
+            numSpiralTweener.start();
+        }
+    }
+    if (key == 'k') {
+        numSpiralAlt += 1;
+        if(!numSpiralAltTweener.isRunning()) {
+            numSpiralAltTweener.init(SPEED_TWEEN_TIME);
+            numSpiralAltTweener.add(&numSpiralAlt, 1.f);
+            numSpiralAltTweener.start();
+        }
+    }
+    if (key == 'K') {
+        numSpiralAlt -= 1;
+        if(!numSpiralAltTweener.isRunning()) {
+            numSpiralAltTweener.init(SPEED_TWEEN_TIME);
+            numSpiralAltTweener.add(&numSpiralAlt, -1.f);
+            numSpiralAltTweener.start();
+        }
+    }
   if (key == 'z') {
       if(!vertSpeedTweener.isRunning()) {
           vertSpeedTweener.init(TOGGLE_TWEEN_TIME);
@@ -420,13 +460,19 @@ void testApp::keyPressed(int key){
           ringSpeedTweener.start();
       }
   }
-  if (key == 'm') {
-      if(!spiralSpeedTweener.isRunning()) {
-          spiralSpeedTweener.init(TOGGLE_TWEEN_TIME);
-          spiralSpeedTweener.add(&spiralSpeed, -1.f*spiralSpeed - spiralSpeed);
-          spiralSpeedTweener.start();
-      }
-  }
+    if (key == 'm') {
+        if(!spiralSpeedTweener.isRunning()) {
+            spiralSpeedTweener.init(TOGGLE_TWEEN_TIME);
+            spiralSpeedTweener.add(&spiralSpeed, -1.f*spiralSpeed - spiralSpeed);
+            spiralSpeedTweener.start();
+        }
+    }  if (key == ',') {
+        if(!spiralAltSpeedTweener.isRunning()) {
+            spiralAltSpeedTweener.init(TOGGLE_TWEEN_TIME);
+            spiralAltSpeedTweener.add(&spiralAltSpeed, -1.f*spiralAltSpeed - spiralAltSpeed);
+            spiralAltSpeedTweener.start();
+        }
+    }
 }
 
 //--------------------------------------------------------------
@@ -484,6 +530,7 @@ void testApp::setUniforms(){
   shader.setUniform1i("bArms", true);
   shader.setUniform1i("bRings", true);
   shader.setUniform1i("bSpiral", true);
+  shader.setUniform1i("bSpiralAlt", true);
 
   //scalars for tweening
   shader.setUniform1f("sVert", sVert);
@@ -493,7 +540,8 @@ void testApp::setUniforms(){
   shader.setUniform1f("sArms", sArms);
   shader.setUniform1f("sRings", sRings);
   shader.setUniform1f("sSpiral", sSpiral);
-  
+  shader.setUniform1f("sSpiralAlt", sSpiralAlt);
+
   //pattern periods
   shader.setUniform1f("vertPeriod", vertPeriod);
   shader.setUniform1f("horizonPeriod", horizonPeriod);
@@ -502,6 +550,7 @@ void testApp::setUniforms(){
   shader.setUniform1f("armPeriod", armPeriod);
   shader.setUniform1f("ringPeriod", ringPeriod);
   shader.setUniform1f("spiralPeriod", spiralPeriod);
+  shader.setUniform1f("spiralAltPeriod", spiralAltPeriod);
 
   //pattern parameters
   shader.setUniform1f("numVert", numVert);
@@ -511,13 +560,5 @@ void testApp::setUniforms(){
   shader.setUniform1f("numArms", numArms);
   shader.setUniform1f("numRings", numRings);
   shader.setUniform1f("numSpiral", numSpiral);
-  
-  //direction parameters
-  shader.setUniform1f("vertSign", vertSign);
-  shader.setUniform1f("horizonSign", horizonSign);
-  shader.setUniform1f("diagSign", diagSign);
-  shader.setUniform1f("diagAltSign", diagAltSign);
-  shader.setUniform1f("armSign", armSign);
-  shader.setUniform1f("ringSign", ringSign);
-  shader.setUniform1f("spiralSign", spiralSign);
+  shader.setUniform1f("numSpiralAlt", numSpiralAlt);
 }
