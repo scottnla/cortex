@@ -40,8 +40,7 @@ class testApp : public ofBaseApp{
     
   Tweener sVertTweener, sHorizonTweener, sDiagTweener, sDiagAltTweener, sArmsTweener, sRingsTweener, sSpiralTweener, 
     vertSpeedTweener, horizonSpeedTweener, diagSpeedTweener, diagAltSpeedTweener, armSpeedTweener, ringSpeedTweener, spiralSpeedTweener,
-    numVertTweener, numHorizonTweener, numDiagTweener, numDiagAltTweener, numRingsTweener, numArmsTweener, numSpiralTweener,
-    spiralSignTweener;
+    numVertTweener, numHorizonTweener, numDiagTweener, numDiagAltTweener, numRingsTweener, numArmsTweener, numSpiralTweener;
     
     ofxSyphonClient syphonClient;
     ofxSyphonServer syphonOutput;

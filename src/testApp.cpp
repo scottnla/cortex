@@ -79,14 +79,13 @@ void testApp::update(){
   armSpeedTweener.update(dt);
   ringSpeedTweener.update(dt);
   spiralSpeedTweener.update(dt);
-  spiralSignTweener.update(dt);
     
   numVertTweener.update(dt);
-    numHorizonTweener.update(dt);
-    numDiagTweener.update(dt);
-    numDiagAltTweener.update(dt);
-    numArmsTweener.update(dt);
-    numRingsTweener.update(dt);
+  numHorizonTweener.update(dt);
+  numDiagTweener.update(dt);
+  numDiagAltTweener.update(dt);
+  numArmsTweener.update(dt);
+  numRingsTweener.update(dt);   
   numSpiralTweener.update(dt);
   
   vertPeriod += vertSpeed*dt;
@@ -380,29 +379,52 @@ void testApp::keyPressed(int key){
       }
   }
   if (key == 'z') {
-    vertSign *= -1.0;
+      if(!vertSpeedTweener.isRunning()) {
+          vertSpeedTweener.init(TOGGLE_TWEEN_TIME);
+          vertSpeedTweener.add(&vertSpeed, -1.f*vertSpeed - vertSpeed);
+          vertSpeedTweener.start();
+      }
   }
   if (key == 'x') {
-    horizonSign *= -1.0;
+      if(!horizonSpeedTweener.isRunning()) {
+          horizonSpeedTweener.init(TOGGLE_TWEEN_TIME);
+          horizonSpeedTweener.add(&horizonSpeed, -1.f*horizonSpeed - horizonSpeed);
+          horizonSpeedTweener.start();
+      }
   }
   if (key == 'c') {
-    diagSign *= -1.0;
+      if(!diagSpeedTweener.isRunning()) {
+          diagSpeedTweener.init(TOGGLE_TWEEN_TIME);
+          diagSpeedTweener.add(&diagSpeed, -1.f*diagSpeed - diagSpeed);
+          diagSpeedTweener.start();
+      };
   }
   if (key == 'v') {
-    diagAltSign *= -1.0;
+      if(!diagAltSpeedTweener.isRunning()) {
+          diagAltSpeedTweener.init(TOGGLE_TWEEN_TIME);
+          diagAltSpeedTweener.add(&diagAltSpeed, -1.f*diagAltSpeed - diagAltSpeed);
+          diagAltSpeedTweener.start();
+      }
   }
   if (key == 'b') {
-    armSign *= -1.0;
+      if(!armSpeedTweener.isRunning()) {
+          armSpeedTweener.init(TOGGLE_TWEEN_TIME);
+          armSpeedTweener.add(&armSpeed, -1.f*armSpeed - armSpeed);
+          armSpeedTweener.start();
+      }
   }
   if (key == 'n') {
-    ringSign *= -1.0;
+      if(!ringSpeedTweener.isRunning()) {
+          ringSpeedTweener.init(TOGGLE_TWEEN_TIME);
+          ringSpeedTweener.add(&ringSpeed, -1.f*ringSpeed - ringSpeed);
+          ringSpeedTweener.start();
+      }
   }
   if (key == 'm') {
-      if(!spiralSignTweener.isRunning()) {
-          spiralSign *= -1.0;
-          spiralSignTweener.init(TOGGLE_TWEEN_TIME);
-          spiralSignTweener.add(&spiralSign, spiralSign);
-          spiralSignTweener.start();
+      if(!spiralSpeedTweener.isRunning()) {
+          spiralSpeedTweener.init(TOGGLE_TWEEN_TIME);
+          spiralSpeedTweener.add(&spiralSpeed, -1.f*spiralSpeed - spiralSpeed);
+          spiralSpeedTweener.start();
       }
   }
 }
